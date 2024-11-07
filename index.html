@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Fotografi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>FOREVER</h1>
+        <nav>
+            <ul>
+                <li><a href="#home" aria-label="Menu Beranda">Beranda</a></li>
+                <li><a href="#gallery" aria-label="Menu Galeri">Galeri</a></li>
+                <li><a href="#contact" aria-label="Menu Kontak">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <h2>FOREVER WITH YOU</h2>
+            <p>the moment are forever with you.</p>
+            <a href="#gallery" class="cta-button">Jelajahi Galeri</a>
+        </section>
+
+        <section id="gallery">
+            <h2>Galeri Foto</h2>
+            <div class="gallery">
+                <img src="foto1.jpg" alt="Foto1" onclick="showImage(this)">
+                <img src="foto2.jpg" alt="Foto2" onclick="showImage(this)">
+                <img src="foto3.jpg" alt="Foto3" onclick="showImage(this)">
+            </div>
+        </section>
+
+        <section id="travel">
+            <h2>Paket Travel</h2>
+            <div class="travel">
+                <div class="travel-item">
+                    <img src="wisuda.jpg" alt="">
+                <h3>Paket WISUDA</h3>
+                <p>Kita menawarkan paket Foto Wisuda.</p>
+                <a href="#contact">Pilih</a>
+            </div>
+            <div class="travel">
+                <div class="travel-item">
+                    <img src="wedding.jpg" alt="">
+                <h3>Paket Wedding</h3>
+                <p>Kita menawarkan paket Foto sekligus Video Wedding.</p>
+                <a href="#contact">Pilih</a>
+            </div>
+            <div class="travel">
+                <div class="travel-item">
+                    <img src="travel.jpg" alt="">
+                <h3>Paket Traveling</h3>
+                <p>Kita menawarkan paket Foto sekligus Video Traveling.</p>
+                <a href="#contact">Pilih</a>
+            </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Hubungi Kami</h2>
+            <form id="contact-form" onsubmit="return validateForm(event)">
+                <div class="form-group">
+                    <label for="name">Nama:</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Pesan:</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <button type="submit">Kirim</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Forever. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+    
+            if (!name || !email || !message) {
+                alert('Semua field harus diisi!');
+                return false;
+            }
+    
+            if (!validateEmail(email)) {
+                alert('Format email tidak valid!');
+                return false;
+            }
+
+            tampilkanPesan(name);
+    
+            alert('Pesan berhasil dikirim!');
+            document.getElementById('contact-form').reset();
+            return true;
+        }
+    
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function tampilkanPesan(name) {
+            alert("Hallo " + name + ", Terimakasih!");
+        }
+    
+        function showImage(img) {
+            alert('Gambar dipilih: ' + img.alt);
+        }
+    
+        window.onload = function() {
+            const images = document.querySelectorAll('.gallery img');
+            images.forEach((img, index) => {
+                setTimeout(() => {
+                    img.style.opacity = '1';
+                }, index * 200);
+            });
+        }
+    </script>
+</body>
+</html>
